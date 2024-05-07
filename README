@@ -1,0 +1,34 @@
+usage: KITIntel automated searching loop [-h] [-d DATE] [-n NUMBER] [-p] -r REGEX -s SEARCH [-v] [-o {text,json,csv,file}]
+
+Use this script to perform automated post processing searching on results found from KITIntel. Using an IoC, perform a search across the KITintel data set, pulling the file content for every matching file and then performing further searching on the file content to fully
+enrich a complex search and support a live investigation with complex data needs.
+
+options:
+  -h, --help            show this help message and exit
+  -d DATE, --date DATE  Relative date to search - Examples: 3h, 6d, 9w - Default 5y
+  -n NUMBER, --number NUMBER
+                        Number of items to return - Default 100
+  -p, --paginate        Set flag to paginate through response data if results are more than one page
+  -r REGEX, --regex REGEX
+                        Regex pattern to search across KITIntel results
+  -s SEARCH, --search SEARCH
+                        KITIntel Search term
+  -v, --version         show program's version number and exit
+  -o {text,json,csv,file}, --output {text,json,csv,file}
+                        Output type. Choose from: text, json, csv, file - Default text
+
+
+
+
+Example usuage:
+  # Search content for the string 'email' and run an email regex against the results
+  python3 main.py -s 'content:email' -r '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}'
+
+  # Search for filename config.php only have 50 results looking for the string 'api' and return the results in a JSON format
+  python3 main.py -s 'filename:config.php' -n 50 -r 'api' -o json
+
+  # Search through a single kit using the kit UUID and only looking in txt files for items matching a BIN number with the output in a CSV format
+  python3 main.py -s 'kit.uuid:4a4a7cb4-e601-4f3c-a3eb-096ed395e2c6 IN filetype:txt' -r '4[0-9]{12}(?:[0-9]{3})?' -o csv
+
+  # Search over the last 2 days for all AMEX cards filtering out the PAN numbers and saving the results in a txt file
+  python3 main.py -s 'content:/3[47][0-9]{13}/' -d 2d -r '3[47][0-9]{13}' -o file
