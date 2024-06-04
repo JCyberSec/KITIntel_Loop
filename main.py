@@ -5,7 +5,7 @@ import json
 import re
 import time
 
-__version__ = '5_7_24_1'
+__version__ = '6_4_24_1'
 
 # Function to perform the 'kitintel search' command
 def perform_search(searchTerm, date, number):

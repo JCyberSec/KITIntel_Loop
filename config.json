@@ -1,0 +1,16 @@
+{
+    "headers": {
+        "Content-Type": "application/json",
+        "x-api-key": "KITINTEL-API-KEY-GOES-HERE"
+    },
+    "proxies": {
+        "http": "http://your_proxy_url:proxy_port",
+        "https": "https://your_proxy_url:proxy_port"
+    },
+    "proxy_auth": {
+        "http": "http://username:password@your_proxy_url:proxy_port",
+        "https": "https://username:password@your_proxy_url:proxy_port"
+    },
+    "cert": "/path/to/your/cert.pem",
+    "verify": false
+}
