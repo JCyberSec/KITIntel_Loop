@@ -4,8 +4,12 @@ import csv
 import json
 import re
 import time
+import urllib3
 
-__version__ = '6_4_24_1'
+urllib3.disable_warnings()
+
+__version__ = '7_10_24_1'
+
 
 # Function to perform the 'kitintel search' command
 def perform_search(searchTerm, date, number):
